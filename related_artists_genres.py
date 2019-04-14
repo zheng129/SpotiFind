@@ -1,8 +1,7 @@
 import sys
 import spotipy
-import pprint
 
-''' shows recommendations for the given artist
+''' shows 20 related artists and their genres for the given artist/s (could take user input or have a default list of artists)
 '''
 
 from spotipy.oauth2 import SpotifyClientCredentials
