@@ -54,7 +54,6 @@ if __name__ == '__main__':
                      '2Pac',
                      '50 Cent',
                      'ABC',
-                     'Agnetha Fältskog',
                      'Alan Jackson',
                      'Albert King',
                      'Alice Cooper',
