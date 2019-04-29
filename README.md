@@ -13,7 +13,7 @@ For the CPSC 353 Class project
 * Then run: "python get-pip.py" in the terminal
 * To verify if Pip was installed correctly type "pip -V"
 
-#### Runing the file:
+#### Runing the program:
 
 * Go to the directory that the file is stored
 * `python related_artists_genres_sub3.py [artist_name]` insert artist name as argument
