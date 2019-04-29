@@ -16,7 +16,7 @@ For the CPSC 353 Class project
 #### Runing the file:
 
 * Go to the directory that the file is stored
-* `python related_artists_genres_sub3.py []` insert artist name as argument
+* `python related_artists_genres_sub3.py [artist_name]` insert artist name as argument
 * Note that the spelling of the artist is critical, might need space/dot in between words
 
 * example: 
