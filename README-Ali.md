@@ -6,4 +6,4 @@ Submission 2
 
 submission 3
 - Helped with the coding of the program
-- research and implementation of GUI for the program 
+- Worked on majority of the poster
