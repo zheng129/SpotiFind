@@ -21,4 +21,8 @@ For the CPSC 353 Class project
 * Go to the directory that the file is stored
 * Run `python3 trial2.py` in Terminal window
 * Note that the spelling of the artist is critical, might need space/dot in between words
+* Once the artist is entered, the app will open a window with the Spotify profile photo
+* The program will run and when it is finished will ask you to give a number matched to a song and open a webpage with that     album cover
+* The related artists will be listed close to the top of the start of the program
+* The output will also contain the artist follower count, genre, and songs by album
 
