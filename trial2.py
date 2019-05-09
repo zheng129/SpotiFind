@@ -14,6 +14,7 @@ scope = 'user-library-read'
 client_id = "91f224b0e56d405cb6c2c10bb9961405"
 client_secret = "2c0ec20e82774410be39c1862bf6c821"
 redirect_uri = "http://www.google.com/"
+
 #Get the username from the terminal
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
@@ -21,18 +22,8 @@ sp.trace=False
 
 def get_artist(name):
     results = sp.search(q='artist:' + name, type='artist')
-    #items = results['artists']['items']
-    #if len(items) > 0:
-    #    return items[0]
-    #else:
-    #    return None
-    return results
 
-def show_recommendations_for_artist(artist):
-    albums = []
-    results = sp.recommendations(seed_artists = [artist['id']], limit = 3)
-    for track in results['tracks']:
-        print (track['name'], '-', track['artists'][0]['name'])
+    return results
 
 def show_related_artists(artist):
     results = []
@@ -43,41 +34,18 @@ def show_related_artists(artist):
 
     related = sp.artist_related_artists(uri)
     results.append(name)
-    for related_artist in related['artists'][:3]:
+    for related_artist in related['artists'][:50]:
         results.append(related_artist['name'])
 
-        # print out the first three genres
-        for idx, genre in enumerate(related_artist['genres'][:3], start = 1):
-            results.append('Genre {}: {}'.format(idx, genre))
-
-        top_tracks = sp.artist_top_tracks(related_artist['uri'])
-        for idx, track in enumerate(top_tracks['tracks'][:3], start = 1):
-            results.append('Song {}: {}'.format(idx, track['name']))
-
-        #tracks = sp.recommendations(seed_artists = [related_artist['id']], limit = 3)
-        #for idx, track in enumerate(tracks['tracks'], start = 1):
-        #    results.append('Song {}: {}'.format(idx, track['name'] + ' - ' + track['artists'][0]['name']))
 
     return results
-
-#name = input("Who is the Artist you would like to search for? ")
-
-#artist = get_artist(name)
-#if artist:
-    #results = show_related_artists(artist)
-    #print('Related artists for', results[0])
-    #for artist in results[1:]:
-        #print(artist)
-
-print()
-print()
 
 # Loop
 while True:
     # Main Menu
     print("============================")
-    print(">>> Welcome to Spotipy! <<<")
-    print("----------------------------")
+    print(">>> Welcome to SpotiFind! <<<")
+    print("============================")
     print("0 - Search for an artist")
     print("1 - exit")
     print()
@@ -85,11 +53,11 @@ while True:
 
     if choice == "0":
         print()
-        searchQuery = input("Ok, what's their name?: ")
+        name = input("Ok, what's their name?: ")
         print()
 
         # Get search results
-        searchResults = sp.search(searchQuery,1,0,"artist")
+        searchResults = sp.search(name,1,0,"artist")
 
         # Artist details
         print("================")
@@ -102,6 +70,20 @@ while True:
         webbrowser.open(artist['images'][0]['url'])
         artistID = artist['id']
 
+        print()
+        print()
+
+        # Print related artists
+        artist = get_artist(name)
+        if artist:
+            results = show_related_artists(artist)
+            print("=================================================")
+            print('Related artists for:', results[0], "\n=================================================")
+            for artist in results[1:]:
+                print(artist)
+
+        print("-------------------------------------------------")
+        print()
 
         # Album and track details
         trackURIs = []
@@ -113,6 +95,7 @@ while True:
         print()
         albumResults = albumResults['items']
 
+        # Print out by albums
         for item in albumResults:
             print("=================================================")
             print("ALBUM: " + item['name'])
@@ -133,19 +116,18 @@ while True:
             print()
             print()
 
-        # See album art
+        # Open album art
         while True:
-            songSelection = input("Enter a song number to see album art and play the song (x to exit): ") # and play the song
+            songSelection = input("Enter a song number to see album art or press 'x' to exit): ")
             if songSelection == "x":
                 break
 
             webbrowser.open(trackArt[int(songSelection)])
             trackSelectionList = []
             trackSelectionList.append(trackURIs[int(songSelection)])
-            #sp.start_playback(deviceID, None, trackSelectionList) # added
 
 
+    # Exit SpotiFind
     if choice == "1":
         break
 
-    # print(json.dumps(trackResults, sort_keys=True, indent=4))
