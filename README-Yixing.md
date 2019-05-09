@@ -9,3 +9,8 @@
 
 - Wrote most of the code for Submission 3
 - Tested files
+
+## Final Submission
+- Helped researching API for displaying album covers 
+- Organized submission documents
+- Tested files
