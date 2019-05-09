@@ -9,5 +9,5 @@
 * Worked on majority of the poster
 
 ## Final Submission
-* Wrote code to open artist profile picture and album cover in webpage
-* Worked on poster with Johnny for Synopsium
+* Wrote code to open artist profile picture and album cover in a webpage
+* Tested the final application
